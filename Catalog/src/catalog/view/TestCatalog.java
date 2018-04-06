@@ -21,15 +21,14 @@ public class TestCatalog {
             CatalogController catalogCtrl = new CatalogController(usrName, password);
 
             System.out.println("------Menu------");
-            System.out.print("1.Create Table\n" + "2.Add product\n" + "3.Find a product\n" + "4.Adjust table\n" + "5.Delete all product\n" + "----------------\n");
+            System.out.print("(1)Create Table\n" + "(2)Add product\n" + "(3)Find a product\n" + "(4)Adjust table\n" + "(5)Delete all product\n" + "----------------\n");
 //            System.out.print("Choose the menu (0-5) : ");
 //            int menu = usr.nextInt();
-            int menu;
-            
+            int menu;            
             String otherMenu;
             
             do {
-                System.out.print("Choose the menu (0-5) : ");
+                System.out.print("Choose the menu (1-5) : ");
                 menu = usr.nextInt();
                 switch (menu) {
                     case 1:

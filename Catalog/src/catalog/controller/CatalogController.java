@@ -77,7 +77,8 @@ public class CatalogController {
     }
     
     public void closeCatalogConnection() throws SQLException{
-        CatalogConnectManager.closeConnect(connect);
+        CatalogConnectManager.closeConnect(connect);  
+        System.out.println("-----Close connection-----");
     }
     
     
