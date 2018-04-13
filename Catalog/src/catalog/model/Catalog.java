@@ -41,7 +41,7 @@ public class Catalog {
 
     @Override
     public String toString() {
-        return "[Product's ID : " + productId + ", Product's name : " + productName + ", Product's cost : " + productCost +" Baht ]";
+        return "[Product's ID : " + productId + ", Product's name : " + productName + ", Product's cost :  " + productCost +" Baht ]";
     }
     
     
