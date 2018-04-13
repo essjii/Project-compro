@@ -12,7 +12,7 @@ public class Catalog {
     public Catalog(String productId, String productName, String productCost) {
         this.productId = productId;
         this.productName = productName;
-        this.productCost = productCost+" Baht";
+        this.productCost = productCost;
     }
 
     public String getProductId() {
@@ -41,7 +41,7 @@ public class Catalog {
 
     @Override
     public String toString() {
-        return "Catalog{" + "productId=" + productId + ", productName=" + productName + ", productCost=" + productCost + '}';
+        return "[Product's ID : " + productId + ", Product's name : " + productName + ", Product's cost : " + productCost +" Baht ]";
     }
     
     

@@ -30,15 +30,15 @@ public class TestCourseDB {
             CourseController courseCtrl = new CourseController(usrName, password);
 //            CourseController courseCtrl = new CourseController("sit", "sit");
 //            courseCtrl.executeSQLFromUsre("Select * from course where courseId = 'GEN111'");
-//            courseCtrl.executeSQLFromUsre("update course set courseName = 'Strong Man' where courseId = 'GEN111'");
-            courseCtrl.dropCourseTable();
-//            courseCtrl.createCourseTable();
+            courseCtrl.executeSQLFromUsre("update course set courseName = 'Good Man' where courseId = 'GEN111'");
+            //courseCtrl.dropCourseTable();
+            //courseCtrl.createCourseTable();
 
 //            Course c1 = new Course("INT105", "Computer Programming II");
 //            int insertedRec = courseCtrl.insertCourse(c1);
 //            System.out.println(insertedRec+"Insert Record");
 
-//            courseCtrl.insertFromFile("courseList.txt");
+            //courseCtrl.insertFromFile("courseList.txt");
             
 //            ArrayList<Course> cList = courseCtrl.selectCourses();
             //การ update or แก้ข้อมูลลงบน data base

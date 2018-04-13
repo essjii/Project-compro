@@ -4,6 +4,7 @@ import catalog.controller.CatalogController;
 import catalog.model.Catalog;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TestCatalog {
@@ -21,12 +22,11 @@ public class TestCatalog {
             CatalogController catalogCtrl = new CatalogController(usrName, password);
 
             System.out.println("------Menu------");
-            System.out.print("(1)Create Table\n" + "(2)Add product\n" + "(3)Find a product\n" + "(4)Adjust table\n" + "(5)Delete all product\n" + "----------------\n");
-//            System.out.print("Choose the menu (0-5) : ");
-//            int menu = usr.nextInt();
-            int menu;            
+            System.out.print("(1)Create Table\n" + "(2)Add products\n" + "(3)Modify products\n" + "(4)Find products\n"
+                    + "(5)Show all products\n" + "(6)Delete all products\n" + "----------------\n");
+            int menu;
             String otherMenu;
-            
+
             do {
                 System.out.print("Choose the menu (1-5) : ");
                 menu = usr.nextInt();
@@ -37,10 +37,8 @@ public class TestCatalog {
                         String filename = usr.next();
                         catalogCtrl.insertFromFile(filename);
                         break;
-                        
+
                     case 2:
-//                    System.out.print("Do you want to add more product? (y/n): ");
-//                    String addMore = usr.next();
                         String addMore;
 
                         do {
@@ -61,41 +59,97 @@ public class TestCatalog {
                             addMore = usr.next();
 
                         } while (addMore.equalsIgnoreCase("y"));
-//                    
+
                         break;
+
+//                    case 3:
+//
+//                        break;
+
+                    case 4:
+                        ArrayList<Catalog> productList = catalogCtrl.selectProduct();
+                        String findMore;
+                        int select;
+      
+                        do{
+                            System.out.print("Enter (1) to find product by ID | Enter (2) to find product by name | Enter (3) to find by cost : ");
+                            select = usr.nextInt();
+                            
+                            if(select == 1){
+                                System.out.print("Enter product's ID : ");
+                                String pId = usr.next();
+                                
+                                for (int i = 0; i < productList.size(); i++){
+                                    if(productList.get(i).getProductId().equalsIgnoreCase(pId)){
+                                        System.out.println(productList.get(i));
+                                    }
+                                }
+                            }
+                            
+                            if(select == 2){
+                                System.out.print("Enter product's name : ");
+                                String pName = usr.next();
+                                
+                                for (int i = 0; i < productList.size(); i++){
+                                    if(productList.get(i).getProductName().equalsIgnoreCase(pName)){
+                                        System.out.println(productList.get(i));
+                                    }
+                                }
+                            }
+                            
+                            if(select == 3){
+                                System.out.print("Enter product's cost : ");
+                                String pCost = usr.next();                                
+                                
+                                for (int i = 0; i < productList.size(); i++){
+                                    if(productList.get(i).getProductCost().equalsIgnoreCase(pCost)){
+                                        System.out.println(productList.get(i));
+                                    }
+                                }
+                            }
+                            
+                            System.out.print("Do you want to find anything else? (y/n) : ");
+                            findMore = usr.next();
+                            
+                        } while(findMore.equalsIgnoreCase("y"));
                         
-//                case 3 :
-//                    
-//                    break;
-                        
-//                case 4 :
-//                    
-//                    break;
-                        
+                        break;
+
                     case 5:
+                        productList = catalogCtrl.selectProduct();
+                        
+                        for (int i = 0; i < productList.size(); i++) {
+                            System.out.println(productList.get(i));
+                        }
+
+                        break;
+
+                    case 6:
                         catalogCtrl.dropCatalogTable();
                         break;
-                        
-//                    case 0:
-//                        catalogCtrl.closeCatalogConnection();
-//                        break;
+
                 }
+
                 System.out.print("Do you want to do anything else? (y/n): ");
                 otherMenu = usr.next();
-//                System.out.print("Choose the menu (0-5) : ");
-//                menu = usr.nextInt();
-                
+
             } while (otherMenu.equalsIgnoreCase("y"));
-            
+
             catalogCtrl.closeCatalogConnection();
 
         } catch (SQLException sql) {
             System.out.println(sql);
+
         } catch (ClassNotFoundException cnf) {
             System.out.println(cnf);
+
         } catch (FileNotFoundException fnf) {
             System.out.println(fnf);
+
         }
     }
 
 }
+
+// courseCtrl.executeSQLFromUsre("Select * from course where courseId = 'GEN111'");
+// courseCtrl.executeSQLFromUsre("update course set courseName = 'Strong Man' where courseId = 'GEN111'");
