@@ -22,7 +22,7 @@ public class CatalogController {
 
     public void createCatalogTable() throws SQLException {
         String sql = "create table catalog"
-                + " (productId varchar(5),"
+                + " (productId varchar(15),"
                 + " productName varchar(50),"
                 + " productCost varchar(10),"
                 + " primary key(productId))";
