@@ -41,7 +41,6 @@ public class CatalogController {
         PreparedStatement pStmt = connect.prepareStatement("insert into catalog(productId,productName,productCost) values(?,?,?)");
 
         while (scFile.hasNext()) {
-
             String productId = (scFile.next()).trim();
             String productName = (scFile.next()).trim();
             String productCost = (scFile.next()).trim();
@@ -75,7 +74,6 @@ public class CatalogController {
         ResultSet rs = stmt.executeQuery(sql);
 
         while (rs.next()) {
-
             String proId = rs.getString("productId");
             String proName = rs.getString("productName");
             String proCost = rs.getString("productCost");
@@ -83,11 +81,45 @@ public class CatalogController {
             Catalog ctl = new Catalog(proId, proName, proCost);
 
             productList.add(ctl);
-
         }
         return productList;
     }
 
+    public void editProductCost(String id, String cost) throws SQLException {
+        String sql = "update catalog set productCost = '"+cost+"' where productId = '"+id+"'";
+        Statement stmt = connect.createStatement();
+        stmt.executeUpdate(sql);
+        
+        System.out.println("Edit product's cost successfully");
+    }
+    
+    public void editProductName(String id, String name) throws SQLException {
+        String sql = "update catalog set productName = '"+name+"' where productId = '"+id+"'";
+        Statement stmt = connect.createStatement();
+        stmt.executeUpdate(sql);
+        
+        System.out.println("Edit product's cost successfully");
+    }
+    
+    public void deleteProduct(String id) throws SQLException {
+        String sql = "delete from catalog where productId = '"+id+"'";
+        System.out.println(sql);
+
+        Statement stmt = connect.createStatement();
+        stmt.executeUpdate(sql);
+        System.out.println("delete product successfully");
+    }
+    
+    public int deleteProduct() throws SQLException {
+        String sql = "delete from catalog";
+
+        Statement stmt = connect.createStatement();
+        int deleteRecs = stmt.executeUpdate(sql);
+        System.out.println("delete "+ deleteRecs +" product successfully");
+        
+        return deleteRecs;
+    }
+    
     public void dropCatalogTable() throws SQLException {
         String sql = "drop table catalog";
         System.out.println(sql);
